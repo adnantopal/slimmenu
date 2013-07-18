@@ -1,118 +1,263 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<head>
+    <title>jQuery slimMenu - A lightweight responsive and multi-level navigation menu plugin.</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/spacelab/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <!--[if IE 7]>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet">
     <![endif]-->
-    <title>slimMenu by adnantopal</title>
-  </head>
-
-  <body>
-    <div id="container">
-      <div class="inner">
-
-        <header>
-          <h1>slimMenu</h1>
-          <h2>slimMenu is a lightweight jQuery plugin, which is made to create responsive and multi-level navigation menus on the fly.</h2>
-        </header>
-
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/adnantopal/slimmenu/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/adnantopal/slimmenu/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/adnantopal/slimmenu" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
-
-        <hr>
-
-        <section id="main_content">
-          <h1>
-<a name="slimmenu-jquery-navigation-menu-plugin" class="anchor" href="#slimmenu-jquery-navigation-menu-plugin"><span class="octicon octicon-link"></span></a>slimMenu jQuery Navigation Menu Plugin.</h1>
-
-<hr><h3>
-<a name="slimmenu-is-a-lightweight-jquery-plugin-which-is-made-to-create-responsive-and-multi-level-navigation-menus-on-the-fly" class="anchor" href="#slimmenu-is-a-lightweight-jquery-plugin-which-is-made-to-create-responsive-and-multi-level-navigation-menus-on-the-fly"><span class="octicon octicon-link"></span></a>slimMenu is a lightweight jQuery plugin, which is made to create responsive and multi-level navigation menus on the fly.</h3>
-
-<p>With slimMenu, you'll no longer struggle with media queries to create responsive menus, or any other heavy plugins to create multi-level nested menus. slimMenu does both job for you and it's only 5KB(2.5KB minified)!</p>
-
-<h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features:</h2>
-
-<ul>
-<li>Multi-level nested menus.</li>
-<li>100% mobile responsive menus.</li>
-<li>Multiple slimMenu navigations on the same page.</li>
-<li>Tap areas to toggle sub menus easily in touch devices.</li>
-<li>Hover option and effects for desktop version.</li>
-<li>Submenu indentation options for responsive version.</li>
-</ul><h2>
-<a name="browser-support" class="anchor" href="#browser-support"><span class="octicon octicon-link"></span></a>Browser Support:</h2>
-
-<p>(Tested on following browsers and confirmed that the slimMenu is working.)</p>
-
-<ul>
-<li>IE 9+</li>
-<li>Latest Chrome</li>
-<li>Latest Firefox</li>
-<li>Latest Safari</li>
-<li>Latest Opera</li>
-<li>Android 2.2+</li>
-<li>Mobile Safari</li>
-</ul><p><strong>Note About IE Support:</strong> I don't have time to deal with lower versions of that ancient piece of work. You can fork the project and make it compatible with lower versions of IE if you want. I'll pull it if you send a request.</p>
-
-<h2>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation:</h2>
-
-<p>Add <em>slimmenu.css</em> to the head of your document:</p>
-
-<pre><code>&lt;link rel="stylesheet" href="slimmenu.css" type="text/css"&gt;
-</code></pre>
-
-<p>Add <em>jquery.slimmenu.js</em> after jQuery plugin and before closing body tag.</p>
-
-<pre><code>&lt;script src="jquery.slimmenu.min.js"&gt;&lt;/script&gt;
-</code></pre>
-
-<p>Create your navigation menu using an ordered list and add <em>slimmenu</em> class:</p>
-
-<pre><code>&lt;ul class="slimmenu"&gt;...&lt;/ul&gt;
-</code></pre>
-
-<p>Initilalize the plugin:</p>
-
-<pre><code>$('ul.slimmenu').slimmenu(
-{
-    resizeWidth: '800', /* Navigation menu will be collapsed when document width is below this size or equal to it. */
-    collapserTitle: 'Main Menu', /* Collapsed menu title. */
-    animSpeed: 'medium', /* Speed of the submenu expand and collapse animation. */
-    easingEffect: null, /* Easing effect that will be used when expanding and collapsing menu and submenus. */
-    indentChildren: false, /* Indentation option for the responsive collapsed submenus. If set to true, all submenus will be indented with the value of the option below. */
-    childrenIndenter: '&amp;nbsp;' /* Responsive submenus will be indented with this character according to their level. */
-});
-</code></pre>
-
-<p><strong>Optional</strong> Add easing plugin after jQuery plugin and before closing body tag if you want to use easing effects.</p>
-
-<pre><code>&lt;script src="**PATH_TO_PLUGIN**/jquery.easing.min.js"&gt;&lt;/script&gt;
-</code></pre>
-
-<h2>
-<a name="support" class="anchor" href="#support"><span class="octicon octicon-link"></span></a>Support</h2>
-
-<p>If you need help using slimMenu, have a suggestion or idea, or have found a bug, please create an issue.</p>
-        </section>
-
-        <footer>
-          slimMenu is maintained by <a href="https://github.com/adnantopal">adnantopal</a><br>
-          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
-
-        
-      </div>
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="css/slimmenu.css" rel="stylesheet" media="screen">
+    <link href="css/style.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<a class="visible-desktop" href="https://github.com/adnantopal/slimmenu"><img style="position: fixed; top: 0; right: 0; border: 0;z-index:1050" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+<div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="#" data-target=".section-about">slimMenu</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="#" data-target=".section-about">About</a></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="#" data-target=".section-example" >Example</a></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="#" data-target=".section-usage">Usage</a></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="#" data-target=".section-options">Options</a></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="#" data-target=".section-support">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-  </body>
+    <div class="row section-about">
+        <div class="span12">
+            <div class="hero-unit">
+                <h1>slimMenu</h1>
+                <h3>slimMenu is a lightweight jQuery plugin, which is made to create responsive and multi-level navigation menus on the fly.</h3>
+                <p>With slimMenu, you'll no longer struggle with media queries to create responsive menus, or any other heavy plugins to create multi-level nested menus. slimMenu does both job for you and it's only 5KB(2.5KB minified)!</p>
+                <div class="github-button">
+                    <iframe src="http://ghbtns.com/github-btn.html?user=adnantopal&repo=slimmenu&type=watch&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="150" height="30"></iframe>
+                </div>
+                <div class="github-button">
+                    <iframe src="http://ghbtns.com/github-btn.html?user=adnantopal&repo=slimmenu&type=fork&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="150" height="30"></iframe>
+                </div>
+                <div class="github-button">
+                    <iframe src="http://ghbtns.com/github-btn.html?user=adnantopal&type=follow&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="220" height="30"></iframe>
+                </div>
+                <div class="clearfix"></div>
+                <a class="btn btn-large btn-inverse" href="https://github.com/adnantopal/slimmenu/zipball/master"><i class="icon-download"></i> Download .zip</a>
+                <a class="btn btn-large btn-inverse" href="https://github.com/adnantopal/slimmenu/tarball/master"><i class="icon-download"></i> Download .tar.gz</a>
+                <a class="btn btn-large btn-inverse" href="https://github.com/adnantopal/slimmenu"><i class="icon-github"></i> View on GitHub</a>
+            </div>
+        </div>
+        <div class="span6">
+            <h2>Features:</h2>
+            <ul>
+                <li>Multi-level nested menus.</li>
+                <li>100% mobile responsive menus.</li>
+                <li>Multiple slimMenu navigations on the same page.</li>
+                <li>Tap areas to toggle sub menus easily in touch devices.</li>
+                <li>Hover option and effects for desktop version.</li>
+                <li>Submenu indentation options for responsive version.</li>
+            </ul>
+        </div>
+        <div class="span6">
+            <h2>Browser Support:</h2>
+            <p>(Tested on following browsers and confirmed that the slimMenu is working.)</p>
+            <ul>
+                <li>IE 9+</li>
+                <li>Latest Chrome</li>
+                <li>Latest Firefox</li>
+                <li>Latest Safari</li>
+                <li>Latest Opera</li>
+                <li>Android 2.2+</li>
+                <li>Mobile Safari</li>
+            </ul>
+            <p><strong>Note About IE Support:</strong> I don't have time to deal with lower versions of that ancient piece of work. You can fork the project and make it compatible with lower versions of IE if you want. I'll gladly pull it if you send a request.</p>
+        </div>
+    </div>
+    <hr>
+    <div class="row section-example">
+        <div class="span12 ">
+            <h2>Example slimMenu <small>(Try resizing your browser's width below 800px.)</small></h2>
+        </div>
+        <div class="span12">
+            <ul class="slimmenu">
+                <li>
+                    <a href="#">Slim Menu 1</a>
+                    <ul>
+                        <li>
+                            <a href="#">Slim Menu 1.1</a>
+                            <ul>
+                                <li><a href="#">Slim Menu 1.1.1</a></li>
+                                <li>
+                                    <a href="#">Slim Menu 1.1.2</a>
+                                    <ul>
+                                        <li><a href="#">Slim Menu 1.1.2.1</a></li>
+                                        <li><a href="#">Slim Menu 1.1.2.2</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Slim Menu 1.2</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Slim Menu 2</a></li>
+                <li>
+                    <a href="#">Slim Menu 3</a>
+                    <ul>
+                        <li>
+                            <a href="#">Slim Menu 3.1</a>
+                            <ul>
+                                <li><a href="#">Slim Menu 3.1.1</a></li>
+                                <li><a href="#">Slim Menu 3.1.2</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Slim Menu 3.2</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Slim Menu 4</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr>
+    <div class="row section-usage">
+        <div class="span12">
+            <h2>Usage</h2>
+        </div>
+        <div class="span12">
+            <p>Add <em>slimmenu.css</em> to the head of your document:</p>
+
+            <pre><code>&lt;link rel="stylesheet" href="slimmenu.css" type="text/css"&gt;</code></pre>
+
+            <p>Add <em>jquery.slimmenu.js</em> after jQuery plugin and before closing body tag.</p>
+
+            <pre><code>&lt;script src="jquery.slimmenu.min.js"&gt;&lt;/script&gt;</code></pre>
+
+            <p>Create your navigation menu using an ordered list and add <em>slimmenu</em> class:</p>
+
+            <pre><code>&lt;ul id="navigation" class="slimmenu"&gt;...&lt;/ul&gt;</code></pre>
+
+            <p>Initilalize the plugin:</p>
+
+            <pre><code>$('#navigation').slimmenu(
+{
+    resizeWidth: '800',
+    collapserTitle: 'Main Menu',
+    animSpeed: 'medium',
+    easingEffect: null,
+    indentChildren: false,
+    childrenIndenter: '&amp;nbsp;'
+});</code></pre>
+
+            <p><strong>Optional</strong> Add easing plugin after jQuery plugin and before closing body tag if you want to use easing effects.</p>
+
+            <pre><code>&lt;script src="**PATH_TO_PLUGIN**/jquery.easing.min.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+    </div>
+    <hr>
+    <div class="row section-options">
+        <div class="span12">
+            <h2>Options</h2>
+        </div>
+        <div class="span12">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Option</th>
+                    <th>Default Value</th>
+                    <th>Description</th>
+                    <th>Valid Values</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>resizeWidth</td>
+                    <td>800</td>
+                    <td>Minimum width to collapse the navigation menu. Navigation menu will be collapsed when document width is below this size or equal to it.</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>collapserTitle</td>
+                    <td>Main Menu</td>
+                    <td>Collapsed menu title.</td>
+                    <td>slow, medium, fast or miliseconds</td>
+                </tr>
+                <tr>
+                    <td>animSpeed</td>
+                    <td>medium</td>
+                    <td>Speed of the submenu expand and collapse animation.</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>easingEffect</td>
+                    <td>null</td>
+                    <td>Easing effect that will be used when expanding and collapsing menu and submenus.</td>
+                    <td><a href="http://easings.net/" target="_blank">Any easing effect.</a></td>
+                </tr>
+                <tr>
+                    <td>indentChildren</td>
+                    <td>false</td>
+                    <td>Indentation option for the responsive collapsed submenus. If set to true, all submenus will be indented with the value of the <em>childrenIndenter</em> option.</td>
+                    <td>true, false</td>
+                </tr>
+                <tr>
+                    <td>childrenIndenter</td>
+                    <td>&amp;nbsp;</td>
+                    <td>This character will be prepended and responsive submenus will be indented with this character according to their level.</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <div class="row section-support">
+        <div class="span12">
+            <h2>Support</h2>
+        </div>
+        <div class="span12">
+            <p>If you need help using slimMenu, have a suggestion or idea, or have found a bug, please create an issue by going to <a href="https://github.com/adnantopal/slimmenu/issues">issues page of github repository</a>.</p>
+        </div>
+    </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="js/jquery.slimmenu.js"></script>
+<script>
+$(function() {
+    $('.nav a, .brand, a[data-target]').click(function(){
+        $('html, body').animate({
+            scrollTop: $($(this).attr('data-target')).offset().top-50
+        }, 500)
+    })
+});
+$('ul.slimmenu').slimmenu(
+{
+    resizeWidth: '800',
+    collapserTitle: 'Main Menu',
+    easingEffect:'easeInOutQuint',
+    animSpeed:'medium',
+    indentChildren: true,
+    childrenIndenter: '&raquo;'
+});
+</script>
+</body>
 </html>
