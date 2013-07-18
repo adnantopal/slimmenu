@@ -1,0 +1,14 @@
+.navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+    margin-left: 0;
+    margin-right: 0;
+}
+.brand { margin-right: 24px }
+.section-about { margin-top: 60px}
+ul.slimmenu { text-align: center }
+ul.slimmenu li { text-align: left; width: 234px }
+.table td { vertical-align: middle }
+.github-button {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 20px 10px 20px 0;
+}
