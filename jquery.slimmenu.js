@@ -115,11 +115,11 @@
             {
                 $menu.find('li').has('ul').on('mouseenter', function()
                 {
-                    $(this).find('>ul').slideDown($options.animSpeed, $options.easingEffect);
+                    $(this).find('>ul').stop().slideDown($options.animSpeed, $options.easingEffect);
                 })
                 .on('mouseleave', function()
                 {
-                    $(this).find('>ul').slideUp($options.animSpeed, $options.easingEffect);
+                    $(this).find('>ul').stop().slideUp($options.animSpeed, $options.easingEffect);
                 });
 
                 $menu.find('li > a > i').remove();
