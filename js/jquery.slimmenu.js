@@ -1,5 +1,6 @@
 /**
  * jquery.slimmenu.js
+ * http://adnantopal.github.io/slimmenu/
  * Author: @adnantopal
  * Copyright 2013, Adnan Topal (atopal.com)
  * Licensed under the MIT license.
@@ -115,12 +116,12 @@
             {
                 $menu.find('li').has('ul').on('mouseenter', function()
                 {
-                    $(this).find('>ul').slideDown($options.animSpeed, $options.easingEffect);
+                    $(this).find('>ul').stop().slideDown($options.animSpeed, $options.easingEffect);
                 })
-                .on('mouseleave', function()
-                {
-                    $(this).find('>ul').slideUp($options.animSpeed, $options.easingEffect);
-                });
+                    .on('mouseleave', function()
+                    {
+                        $(this).find('>ul').stop().slideUp($options.animSpeed, $options.easingEffect);
+                    });
 
                 $menu.find('li > a > i').remove();
                 $menu.removeClass('collapsed').show();
@@ -146,7 +147,7 @@
             if (!$.data(this, "plugin_" + pluginName))
             {
                 $.data(this, "plugin_" + pluginName,
-                new Plugin( this, options ));
+                    new Plugin( this, options ));
             }
         });
     };
