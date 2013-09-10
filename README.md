@@ -49,7 +49,10 @@ Initilalize the plugin:
         animSpeed: 'medium', /* Speed of the submenu expand and collapse animation. */
         easingEffect: null, /* Easing effect that will be used when expanding and collapsing menu and submenus. */
         indentChildren: false, /* Indentation option for the responsive collapsed submenus. If set to true, all submenus will be indented with the value of the option below. */
-        childrenIndenter: '&nbsp;' /* Responsive submenus will be indented with this character according to their level. */
+        childrenIndenter: '&nbsp;', /* Responsive submenus will be indented with this character according to their level. */
+        expand: '&#9660;', /* Content to show in the submenu expand button */
+        collapse: '&#9650;' /* Content to show in the submenu collapse button */
+
     });
 
 **Optional** Add easing plugin after jQuery plugin and before closing body tag if you want to use easing effects.

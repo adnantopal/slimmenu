@@ -15,7 +15,9 @@
             animSpeed: 'medium',
             easingEffect: null,
             indentChildren: false,
-            childrenIndenter: '&nbsp;&nbsp;'
+            childrenIndenter: '&nbsp;&nbsp;',
+            expand: '&#9660;',
+            collapse: '&#9650;'
         };
 
     function Plugin( element, options )
@@ -48,13 +50,13 @@
                 if ($(this).hasClass('expanded'))
                 {
                     $(this).removeClass('expanded');
-                    $(this).find('i').html('&#9660;');
+                    $(this).find('i').html($options.expand);
                     $parent_li.find('>ul').slideUp($options.animSpeed, $options.easingEffect);
                 }
                 else
                 {
                     $(this).addClass('expanded');
-                    $(this).find('i').html('&#9650;');
+                    $(this).find('i').html($options.collapse);
                     $parent_li.find('>ul').slideDown($options.animSpeed, $options.easingEffect);
                 }
             });
@@ -82,7 +84,7 @@
                 {
                     if ($(this).has('.sub-collapser').length)
                     {
-                        $(this).children('.sub-collapser i').html('&#9660;');
+                        $(this).children('.sub-collapser i').html($options.expand);
                     }
                     else
                     {
@@ -91,7 +93,7 @@
                 }
 
                 $(this).children('ul').hide();
-                $(this).find('.sub-collapser').removeClass('expanded').children('i').html('&#9660;');
+                $(this).find('.sub-collapser').removeClass('expanded').children('i').html($options.expand);
             });
 
             if ($options.resizeWidth >= $window.width())
