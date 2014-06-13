@@ -10,7 +10,7 @@
     var pluginName = "slimmenu",
         defaults =
         {
-            resizeWidth: '768',
+            resizeWidth: '767',
             collapserTitle: 'Main Menu',
             animSpeed: 'medium',
             easingEffect: null,
@@ -76,6 +76,13 @@
                 $menu = $(event.data.el),
                 $menu_collapser = $('body').find('.menu-collapser');
 
+			var windowWidth = $window.width();
+			if(window["innerWidth"] !== undefined){
+				if(window["innerWidth"] >  windowWidth){
+					windowWidth = window["innerWidth"];
+				}
+			}
+
             $menu.find('li').each(function()
             {
                 if ($(this).has('ul').length)
@@ -94,7 +101,7 @@
                 $(this).find('.sub-collapser').removeClass('expanded').children('i').html('&#9660;');
             });
 
-            if ($options.resizeWidth >= $window.width())
+            if ($options.resizeWidth >= windowWidth)
             {
                 if ($options.indentChildren)
                 {
@@ -118,10 +125,10 @@
                 {
                     $(this).find('>ul').stop().slideDown($options.animSpeed, $options.easingEffect);
                 })
-                .on('mouseleave', function()
-                {
-                    $(this).find('>ul').stop().slideUp($options.animSpeed, $options.easingEffect);
-                });
+                    .on('mouseleave', function()
+                    {
+                        $(this).find('>ul').stop().slideUp($options.animSpeed, $options.easingEffect);
+                    });
 
                 $menu.find('li > a > i').remove();
                 $menu.removeClass('collapsed').show();
@@ -147,7 +154,7 @@
             if (!$.data(this, "plugin_" + pluginName))
             {
                 $.data(this, "plugin_" + pluginName,
-                new Plugin( this, options ));
+                    new Plugin( this, options ));
             }
         });
     };
