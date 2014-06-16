@@ -5,9 +5,9 @@
  * Copyright 2013, Adnan Topal (atopal.com)
  * Licensed under the MIT license.
  */
-;(function ( $, window, document, undefined )
-{
-    var pluginName = "slimmenu",
+(function ( $, window, document, undefined ) {
+    'use strict';
+    var pluginName = 'slimmenu',
         defaults =
         {
             resizeWidth: '768',
@@ -33,33 +33,33 @@
             var $options = this.options,
                 $menu = this.$elem,
                 $collapser = '<div class="menu-collapser">'+$options.collapserTitle+'<div class="collapse-button"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></div></div>',
-                $menu_collapser;
+                $menuCollapser;
 
             $menu.before($collapser);
-            $menu_collapser = $menu.prev('.menu-collapser');
+            $menuCollapser = $menu.prev('.menu-collapser');
 
             $menu.on('click', '.sub-collapser', function(e)
             {
                 e.preventDefault();
                 e.stopPropagation();
 
-                var $parent_li = $(this).closest('li');
+                var $parentLi = $(this).closest('li');
 
                 if ($(this).hasClass('expanded'))
                 {
                     $(this).removeClass('expanded');
                     $(this).find('i').html('&#9660;');
-                    $parent_li.find('>ul').slideUp($options.animSpeed, $options.easingEffect);
+                    $parentLi.find('>ul').slideUp($options.animSpeed, $options.easingEffect);
                 }
                 else
                 {
                     $(this).addClass('expanded');
                     $(this).find('i').html('&#9650;');
-                    $parent_li.find('>ul').slideDown($options.animSpeed, $options.easingEffect);
+                    $parentLi.find('>ul').slideDown($options.animSpeed, $options.easingEffect);
                 }
             });
 
-            $menu_collapser.on('click', '.collapse-button', function(e)
+            $menuCollapser.on('click', '.collapse-button', function(e)
             {
                 e.preventDefault();
                 $menu.slideToggle($options.animSpeed, $options.easingEffect);
@@ -74,7 +74,7 @@
             var $window = $(window),
                 $options = event.data.options,
                 $menu = $(event.data.el),
-                $menu_collapser = $('body').find('.menu-collapser');
+                $menuCollapser = $('body').find('.menu-collapser');
 
             $menu.find('li').each(function()
             {
@@ -110,7 +110,7 @@
 
                 $menu.find('li').has('ul').off('mouseenter mouseleave');
                 $menu.addClass('collapsed').hide();
-                $menu_collapser.show();
+                $menuCollapser.show();
             }
             else
             {
@@ -125,7 +125,7 @@
 
                 $menu.find('li > a > i').remove();
                 $menu.removeClass('collapsed').show();
-                $menu_collapser.hide();
+                $menuCollapser.hide();
             }
         },
 
@@ -144,9 +144,9 @@
     {
         return this.each(function ()
         {
-            if (!$.data(this, "plugin_" + pluginName))
+            if (!$.data(this, 'plugin_' + pluginName))
             {
-                $.data(this, "plugin_" + pluginName,
+                $.data(this, 'plugin_' + pluginName,
                 new Plugin( this, options ));
             }
         });
