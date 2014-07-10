@@ -5,123 +5,164 @@
  * Copyright 2013, Adnan Topal (atopal.com)
  * Licensed under the MIT license.
  */
-(function (e, c, a, g) {
-    var d = "slimmenu",
-        f = {
-            resizeWidth: "767",
-            collapserTitle: "Main Menu",
-            animSpeed: "medium",
+;(function ( $, window, document, undefined )
+{
+    var pluginName = "slimmenu",
+        defaults =
+        {
+            resizeWidth: '767',
+            collapserTitle: 'Main Menu',
+            animSpeed: 'medium',
             easingEffect: null,
             indentChildren: false,
-            childrenIndenter: ""
+            childrenIndenter: '&nbsp;&nbsp;'
         };
 
-    function b(i, h) {
-        this.element = i;
-		this.oldwidth=0;
-        this.$elem = e(this.element);
-        this.options = e.extend({}, f, h);
+    function Plugin( element, options )
+    {
+        this.element = element;
+        this.$elem = $(this.element);
+        this.options = $.extend( {}, defaults, options );
+		this.oldwidth = 0;
         this.init();
     }
-    b.prototype = {
-        init: function () {
-            var h = this.options,
-                j = this.$elem,
-                i = '<div class="menu-collapser">' + h.collapserTitle + '<div class="collapse-button"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></div></div>',
-                k;
-            j.before(i);
-            k = j.prev(".menu-collapser");
-            j.on("click", ".sub-collapser", function (m) {
-                m.preventDefault();
-                m.stopPropagation();
-                var l = e(this).closest("li");
-                if (e(this).hasClass("expanded")) {
-                    e(this).removeClass("expanded");
-                    e(this).find("i").html("&#9660;");
-                    l.find(">ul").slideUp(h.animSpeed, h.easingEffect)
-                } else {
-                    e(this).addClass("expanded");
-                    e(this).find("i").html("&#9650;");
-                    l.find(">ul").slideDown(h.animSpeed, h.easingEffect)
+
+    Plugin.prototype = {
+
+        init: function()
+        {
+            var $options = this.options,
+                $menu = this.$elem,
+                $collapser = '<div class="menu-collapser">'+$options.collapserTitle+'<div class="collapse-button"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></div></div>',
+                $menu_collapser;
+
+            $menu.before($collapser);
+            $menu_collapser = $menu.prev('.menu-collapser');
+
+            $menu.on('click', '.sub-collapser', function(e)
+            {
+                e.preventDefault();
+                e.stopPropagation();
+
+                var $parent_li = $(this).closest('li');
+
+                if ($(this).hasClass('expanded'))
+                {
+                    $(this).removeClass('expanded');
+                    $(this).find('i').html('&#9660;');
+                    $parent_li.find('>ul').slideUp($options.animSpeed, $options.easingEffect);
+                }
+                else
+                {
+                    $(this).addClass('expanded');
+                    $(this).find('i').html('&#9650;');
+                    $parent_li.find('>ul').slideDown($options.animSpeed, $options.easingEffect);
                 }
             });
-            k.on("click", ".collapse-button", function (l) {
-                j.slideToggle(h.animSpeed, h.easingEffect)
-				l.preventDefault();
+
+            $menu_collapser.on('click', '.collapse-button', function(e)
+            {
+                e.preventDefault();
+                $menu.slideToggle($options.animSpeed, $options.easingEffect);
             });
-            this.resizeMenu({
-                data: {
-                    el: this.element,
-                    options: this.options
-                }
-            });
-            
-			e(c).on("resize", {
-                el: this.element,
-                options: this.options
-            }, this.resizeMenu);
-			
-			e(c).trigger("resize");
+
+            this.resizeMenu({ data: { el: this.element, options: this.options } });
+            $(window).on('resize', { el: this.element, options: this.options }, this.resizeMenu);
+			$(window).trigger("resize");
         },
-        resizeMenu: function (k) {
-			var l = e(c),
-				h = k.data.options,
-				i = e(k.data.el),
-				j = e("body").find(".menu-collapser");
-				
-				
-			if(l.width() != this.oldwidth){
-				this.oldwidth = l.width();
-				
-				i.find("li").each(function () {
-					if (e(this).has("ul").length) {
-						if (e(this).has(".sub-collapser").length) {
-							e(this).children(".sub-collapser i").html("&#9660;")
-						} else {
-							e(this).append('<span class="sub-collapser"><i>&#9660;</i></span>')
+
+        resizeMenu: function(event)
+        {
+            var $window = $(window),
+                $options = event.data.options,
+                $menu = $(event.data.el),
+                $menu_collapser = $('body').find('.menu-collapser');
+
+			var windowWidth = $window.width();
+			if(window["innerWidth"] !== undefined){
+				if(window["innerWidth"] >  windowWidth){
+					windowWidth = window["innerWidth"];
+				}
+			}
+			
+			if(windowWidth != this.oldwidth){
+				this.oldwidth = windowWidth;
+
+				$menu.find('li').each(function()
+				{
+					if ($(this).has('ul').length)
+					{
+						if ($(this).has('.sub-collapser').length)
+						{
+							$(this).children('.sub-collapser i').html('&#9660;');
+						}
+						else
+						{
+							$(this).append('<span class="sub-collapser"><i>&#9660;</i></span>');
 						}
 					}
-					e(this).children("ul").hide();
-					e(this).find(".sub-collapser").removeClass("expanded").children("i").html("&#9660;")
+	
+					$(this).children('ul').hide();
+					$(this).find('.sub-collapser').removeClass('expanded').children('i').html('&#9660;');
 				});
-								
-				if (h.resizeWidth >= l.width()) {
-					if (h.indentChildren) {
-						i.find("ul").each(function () {
-							var m = e(this).parents("ul").length;
-							if (!e(this).children("li").children("a").has("i").length) {
-								e(this).children("li").children("a").prepend(b.prototype.indent(m, h))
+	
+				if ($options.resizeWidth >= windowWidth)
+				{
+					if ($options.indentChildren)
+					{
+						$menu.find('ul').each(function()
+						{
+							var $depth = $(this).parents('ul').length;
+							if (!$(this).children('li').children('a').has('i').length)
+							{
+								$(this).children('li').children('a').prepend(Plugin.prototype.indent($depth, $options));
 							}
-						})
+						});
 					}
-					i.find("li").has("ul").off("mouseenter mouseleave");
-					i.addClass("collapsed").hide();
-					j.show()
-				} else {
-					i.find("li").has("ul").on("mouseenter", function () {
-						e(this).find(">ul").stop().slideDown(h.animSpeed, h.easingEffect)
-					}).on("mouseleave", function () {
-						e(this).find(">ul").stop().slideUp(h.animSpeed, h.easingEffect)
-					});
-					i.find("li > a > i").remove();
-					i.removeClass("collapsed").show();
-					j.hide()
+	
+					$menu.find('li').has('ul').off('mouseenter mouseleave');
+					$menu.addClass('collapsed').hide();
+					$menu_collapser.show();
+				}
+				else
+				{
+					$menu.find('li').has('ul').on('mouseenter', function()
+					{
+						$(this).find('>ul').stop().slideDown($options.animSpeed, $options.easingEffect);
+					})
+						.on('mouseleave', function()
+						{
+							$(this).find('>ul').stop().slideUp($options.animSpeed, $options.easingEffect);
+						});
+	
+					$menu.find('li > a > i').remove();
+					$menu.removeClass('collapsed').show();
+					$menu_collapser.hide();
 				}
 			}
         },
-        indent: function (k, j) {
-            var h = "";
-            for (var l = 0; l < k; l++) {
-                h += j.childrenIndenter
+
+        indent: function(num, options)
+        {
+            var $indent = '';
+            for (var i=0; i < num; i++)
+            {
+                $indent += options.childrenIndenter;
             }
-            return "<i>" + h + "</i>"
+            return '<i>'+$indent+'</i>';
         }
     };
-    e.fn[d] = function (h) {
-        return this.each(function () {
-            if (!e.data(this, "plugin_" + d)) {
-                e.data(this, "plugin_" + d, new b(this, h))
+
+    $.fn[pluginName] = function ( options )
+    {
+        return this.each(function ()
+        {
+            if (!$.data(this, "plugin_" + pluginName))
+            {
+                $.data(this, "plugin_" + pluginName,
+                    new Plugin( this, options ));
             }
-        })
-    }
-})(jQuery, window, document);
+        });
+    };
+
+})( jQuery, window, document );
