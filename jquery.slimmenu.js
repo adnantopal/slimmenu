@@ -17,6 +17,8 @@
             indentChildren: false,
             childrenIndenter: '&nbsp;&nbsp;'
         };
+        
+    var oldWindowWidth = 0;
 
     function Plugin( element, options )
     {
@@ -75,6 +77,11 @@
                 $options = event.data.options,
                 $menu = $(event.data.el),
                 $menu_collapser = $('body').find('.menu-collapser');
+                
+            if (oldWindowWidth == $window.width()) {
+				return;
+			}
+			oldWindowWidth = $window.width();
 
             $menu.find('li').each(function()
             {
