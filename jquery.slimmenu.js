@@ -76,6 +76,8 @@
                 $menu = $(event.data.el),
                 $menu_collapser = $('body').find('.menu-collapser');
 
+			$menu.find('li').has('ul').off('mouseenter mouseleave');
+			
             $menu.find('li').each(function()
             {
                 if ($(this).has('ul').length)
