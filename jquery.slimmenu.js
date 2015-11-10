@@ -10,7 +10,7 @@
     var pluginName = "slimmenu",
         defaults =
         {
-            resizeWidth: '768',
+            resizeWidth: '767',
             collapserTitle: 'Main Menu',
             animSpeed: 'medium',
             easingEffect: null,
@@ -25,6 +25,7 @@
         this.element = element;
         this.$elem = $(this.element);
         this.options = $.extend( {}, defaults, options );
+		this.oldwidth = 0;
         this.init();
     }
 
@@ -69,6 +70,7 @@
 
             this.resizeMenu({ data: { el: this.element, options: this.options } });
             $(window).on('resize', { el: this.element, options: this.options }, this.resizeMenu);
+			$(window).trigger("resize");
         },
 
         resizeMenu: function(event)
@@ -83,57 +85,68 @@
 			}
 			oldWindowWidth = $window.width();
 
-            $menu.find('li').each(function()
-            {
-                if ($(this).has('ul').length)
-                {
-                    if ($(this).has('.sub-collapser').length)
-                    {
-                        $(this).children('.sub-collapser i').html('&#9660;');
-                    }
-                    else
-                    {
-                        $(this).append('<span class="sub-collapser"><i>&#9660;</i></span>');
-                    }
-                }
+			var windowWidth = $window.width();
+			if(window["innerWidth"] !== undefined){
+				if(window["innerWidth"] >  windowWidth){
+					windowWidth = window["innerWidth"];
+				}
+			}
+			
+			if(windowWidth != this.oldwidth){
+				this.oldwidth = windowWidth;
 
-                $(this).children('ul').hide();
-                $(this).find('.sub-collapser').removeClass('expanded').children('i').html('&#9660;');
-            });
-
-            if ($options.resizeWidth >= $window.width())
-            {
-                if ($options.indentChildren)
-                {
-                    $menu.find('ul').each(function()
-                    {
-                        var $depth = $(this).parents('ul').length;
-                        if (!$(this).children('li').children('a').has('i').length)
-                        {
-                            $(this).children('li').children('a').prepend(Plugin.prototype.indent($depth, $options));
-                        }
-                    });
-                }
-
-                $menu.find('li').has('ul').off('mouseenter mouseleave');
-                $menu.addClass('collapsed').hide();
-                $menu_collapser.show();
-            }
-            else
-            {
-                $menu.find('li').has('ul').on('mouseenter', function()
-                {
-                    $(this).find('>ul').stop().slideDown($options.animSpeed, $options.easingEffect);
-                })
-                .on('mouseleave', function()
-                {
-                    $(this).find('>ul').stop().slideUp($options.animSpeed, $options.easingEffect);
-                });
-
-                $menu.find('li > a > i').remove();
-                $menu.removeClass('collapsed').show();
-                $menu_collapser.hide();
-            }
+				$menu.find('li').each(function()
+				{
+					if ($(this).has('ul').length)
+					{
+						if ($(this).has('.sub-collapser').length)
+						{
+							$(this).children('.sub-collapser i').html('&#9660;');
+						}
+						else
+						{
+							$(this).append('<span class="sub-collapser"><i>&#9660;</i></span>');
+						}
+					}
+	
+					$(this).children('ul').hide();
+					$(this).find('.sub-collapser').removeClass('expanded').children('i').html('&#9660;');
+				});
+	
+				if ($options.resizeWidth >= windowWidth)
+				{
+					if ($options.indentChildren)
+					{
+						$menu.find('ul').each(function()
+						{
+							var $depth = $(this).parents('ul').length;
+							if (!$(this).children('li').children('a').has('i').length)
+							{
+								$(this).children('li').children('a').prepend(Plugin.prototype.indent($depth, $options));
+							}
+						});
+					}
+	
+					$menu.find('li').has('ul').off('mouseenter mouseleave');
+					$menu.addClass('collapsed').hide();
+					$menu_collapser.show();
+				}
+				else
+				{
+					$menu.find('li').has('ul').on('mouseenter', function()
+					{
+						$(this).find('>ul').stop().slideDown($options.animSpeed, $options.easingEffect);
+					})
+						.on('mouseleave', function()
+						{
+							$(this).find('>ul').stop().slideUp($options.animSpeed, $options.easingEffect);
+						});
+	
+					$menu.find('li > a > i').remove();
+					$menu.removeClass('collapsed').show();
+					$menu_collapser.hide();
+				}
+			}
         },
 
         indent: function(num, options)
@@ -154,7 +167,7 @@
             if (!$.data(this, "plugin_" + pluginName))
             {
                 $.data(this, "plugin_" + pluginName,
-                new Plugin( this, options ));
+                    new Plugin( this, options ));
             }
         });
     };
