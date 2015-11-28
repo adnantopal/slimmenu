@@ -1,0 +1,33 @@
+{
+  "name": "slimmenu",
+  "version": "1.0.0",
+  "description": "A lightweight jQuery plugin to help you create responsive and multi-level navigation menus on the fly.",
+  "main": "dist/js/jquery.slimmenu.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adnantopal/slimmenu.git"
+  },
+  "keywords": [
+    "jquery",
+    "plugin",
+    "responsive",
+    "multi-level",
+    "menu",
+    "navigation"
+  ],
+  "author": "Adnan Topal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adnantopal/slimmenu/issues"
+  },
+  "homepage": "https://github.com/adnantopal/slimmenu#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.1.0",
+    "gulp-uglify": "^1.4.2"
+  }
+}

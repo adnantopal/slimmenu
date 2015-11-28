@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
-    <link rel="stylesheet" type="text/css" href="slimmenu.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/slimmenu.min.css">
     <style>
         body {
             font-family: 'Lucida Sans Unicode', 'Lucida Console', sans-serif;
@@ -13,7 +13,7 @@
         }
         a, a:active { text-decoration: none }
     </style>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
 <ul class="slimmenu">
@@ -53,14 +53,13 @@
     <li><a href="#">Slim Menu 4</a></li>
 </ul>
 
-<script src="jquery.slimmenu.js"></script>
+<script src="src/js/jquery.slimmenu.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <script>
-$('ul.slimmenu').slimmenu(
+$('.slimmenu').slimmenu(
 {
     resizeWidth: '800',
     collapserTitle: 'Main Menu',
-    easingEffect:'easeInOutQuint',
     animSpeed:'medium',
     indentChildren: true,
     childrenIndenter: '&raquo;'
