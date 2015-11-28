@@ -13,7 +13,7 @@
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link href="css/slimmenu.css" rel="stylesheet" media="screen">
+    <link href="https://cdn.rawgit.com/adnantopal/slimmenu/master/dist/css/slimmenu.min.css" rel="stylesheet" media="screen">
     <link href="css/style.css" rel="stylesheet" media="screen">
 </head>
 <body>
@@ -88,7 +88,6 @@
                 <li>Android 2.2+</li>
                 <li>Mobile Safari</li>
             </ul>
-            <p><strong>Note About IE Support:</strong> I don't have time to deal with lower versions of that ancient piece of work. You can fork the project and make it compatible with lower versions of IE if you want. I'll gladly pull it if you send a request.</p>
         </div>
     </div>
     <hr>
@@ -141,11 +140,11 @@
             <h2>Usage</h2>
         </div>
         <div class="span12">
-            <p>Add <em>slimmenu.css</em> to the head of your document:</p>
+            <p>Add <em>dist/css/slimmenu.min.css</em> to the head of your document:</p>
 
-            <pre><code>&lt;link rel="stylesheet" href="slimmenu.css" type="text/css"&gt;</code></pre>
+            <pre><code>&lt;link rel="stylesheet" href="slimmenu.min.css" type="text/css"&gt;</code></pre>
 
-            <p>Add <em>jquery.slimmenu.js</em> after jQuery plugin and before closing body tag.</p>
+            <p>Add <em>dist/js/jquery.slimmenu.min.js</em> after jQuery plugin and before closing body tag.</p>
 
             <pre><code>&lt;script src="jquery.slimmenu.min.js"&gt;&lt;/script&gt;</code></pre>
 
@@ -180,7 +179,7 @@
                 <thead>
                 <tr>
                     <th>Option</th>
-                    <th>Default Value</th>
+                    <th style="width: 15%">Default Value</th>
                     <th>Description</th>
                     <th>Valid Values</th>
                 </tr>
@@ -190,13 +189,19 @@
                     <td>resizeWidth</td>
                     <td>800</td>
                     <td>Minimum width to collapse the navigation menu. Navigation menu will be collapsed when document width is below this size or equal to it.</td>
-                    <td></td>
+                    <td>number</td>
+                </tr>
+                <tr>
+                    <td>initiallyVisible</td>
+                    <td>false</td>
+                    <td>Make main navigation menu initially visible on mobile devices without the need to click on expand/collapse icon.</td>
+                    <td>boolean</td>
                 </tr>
                 <tr>
                     <td>collapserTitle</td>
                     <td>Main Menu</td>
                     <td>Collapsed menu title.</td>
-                    <td></td>
+                    <td>string</td>
                 </tr>
                 <tr>
                     <td>animSpeed</td>
@@ -208,19 +213,31 @@
                     <td>easingEffect</td>
                     <td>null</td>
                     <td>Easing effect that will be used when expanding and collapsing menu and submenus.</td>
-                    <td><a href="http://easings.net/" target="_blank">Any easing effect.</a></td>
+                    <td><a href="http://easings.net/" target="_blank">any easing effect.</a></td>
                 </tr>
                 <tr>
                     <td>indentChildren</td>
                     <td>false</td>
                     <td>Indentation option for the responsive collapsed submenus. If set to true, all submenus will be indented with the value of the <em>childrenIndenter</em> option.</td>
-                    <td>true, false</td>
+                    <td>boolean</td>
                 </tr>
                 <tr>
                     <td>childrenIndenter</td>
                     <td>&amp;nbsp;</td>
                     <td>This character will be prepended and responsive submenus will be indented with this character according to their level.</td>
-                    <td></td>
+                    <td>string</td>
+                </tr>
+                <tr>
+                    <td>expandIcon</td>
+                    <td>&lt;i&gt;&amp;#9660;&lt;i&gt;</td>
+                    <td>An icon to be displayed next to parent menu of collapsed sub menus.</td>
+                    <td>string</td>
+                </tr>
+                <tr>
+                    <td>collapseIcon</td>
+                    <td>&lt;i&gt;&amp;#9650;&lt;i&gt;</td>
+                    <td>An icon to be displayed next to parent menu of expanded sub menus.</td>
+                    <td>string</td>
                 </tr>
                 </tbody>
             </table>
@@ -240,7 +257,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<script src="js/jquery.slimmenu.js"></script>
+<script src="https://cdn.rawgit.com/adnantopal/slimmenu/master/dist/js/jquery.slimmenu.min.js"></script>
 <script>
 $(function() {
     $('.nav a, .brand, a[data-target]').click(function(){
