@@ -60,7 +60,8 @@
                 e.preventDefault();
                 $menu.slideToggle(options.animSpeed, options.easingEffect);
             });
-
+            
+            oldWindowWidth = 0;
             this.resizeMenu();
             $window.on('resize', this.resizeMenu.bind(this));
             $window.trigger('resize');
