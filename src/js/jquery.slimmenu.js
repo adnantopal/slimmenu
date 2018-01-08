@@ -17,6 +17,7 @@
             animSpeed: 'medium',
             easingEffect: null,
             indentChildren: false,
+            backToNormal: false,
             childrenIndenter: '&nbsp;&nbsp;',
             expandIcon: '<i>&#9660;</i>',
             collapseIcon: '<i>&#9650;</i>'
@@ -112,14 +113,24 @@
                         $menu.hide();
                     }
                 } else {
-                    $menu.find('li').has('ul')
-                        .on('mouseenter', function () {
-                            $(this).find('>ul').stop().slideDown($options.animSpeed, $options.easingEffect);
-                        })
-                        .on('mouseleave', function () {
+            	    if (!$options.backToNormal) {
+                        $menu.find('li').has('ul')
+                           .on('mouseenter', function () {
+                                $(this).find('>ul').stop().slideDown($options.animSpeed, $options.easingEffect);
+                            })
+                            .on('mouseleave', function () {
                             $(this).find('>ul').stop().slideUp($options.animSpeed, $options.easingEffect);
-                        });
-
+                            });
+                    } else {
+                	$menu.find('li').each(function () {
+                    	if ($(this).has('ul').length) {
+	                        if ($(this).addClass('has-submenu').has('.sub-toggle').length) {
+	                        	$(this).removeClass('has-submenu').children('.sub-toggle').remove();
+	                        	$(this).children('ul').show();
+	                        }
+	                    }
+	                });
+                    }
                     $menu.find('li > a > i').remove();
                     $menu.removeClass('collapsed').show();
                     $menuCollapser.hide();
